@@ -13,19 +13,24 @@
 const butInstall = document.getElementById('buttonInstall');
 
 window.addEventListener('beforeinstallprompt', (event) => {
-  event.preventDefault();
-  butInstall.style.visibility = 'visible';
-
-  butInstall.addEventListener('click', async () => {
-    event.prompt();
-    console.log("Install button clicked");
-    butInstall.setAttribute('disabled', true);
-    butInstall.textContent = 'Installed!';
+    console.log(event);
+    window.deferredPrompt = event;
+    butInstall.classList.toggle('hidden', false);
 });
+
+butInstall.addEventListener('click', async () => {
+    const promptEvent = window.deferredPrompt;
+    console.log(promptEvent);
+
+    if (!promptEvent) {
+     return;
+    }
+    promptEvent.prompt();
+    window.deferredPrompt = null;
+    butInstall.classList.toggle('hidden', true);
 });
 
 window.addEventListener('appinstalled', (event) => {
-  butInstall.textContent = 'Successfully installed!';
-  console.log('appinstalled', event);
+    window.deferredPrompt = null;
 });
 

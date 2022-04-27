@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { InjectManifest } = require("workbox-webpack-plugin");
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
@@ -24,19 +24,19 @@ module.exports = () => {
         title: "JATE",
         template: "./index.html",
       }),
-      new MiniCssExtractPlugin(),
+      // new MiniCssExtractPlugin(),
       // adds the custom service worker
       new InjectManifest({
         swSrc: "./src-sw.js",
         // may or may not need swDest
-        // swDest: "src-sw.js",
+        swDest: "src-sw.js",
       }),
 
       // Creates the Manifest.JSON file.
       new WebpackPwaManifest({
         fingerprints: false,
         // may not or may not need inject: true
-        // inject: true,
+        inject: true,
         name: "JATE",
         short_name: "JATE",
         description: "A text editor",
@@ -58,12 +58,12 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          use: ['style-loader', "css-loader"],
         },
-        {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: "asset/resource",
-        },
+        // {
+        //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        //   type: "asset/resource",
+        // },
         {
           test: /\.m?js$/,
           exclude: /(node_modules)/,
