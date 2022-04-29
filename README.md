@@ -95,9 +95,9 @@ Once downloaded, the program will automatically be saved to your desktop with a 
 <br>
   
 
-[Screenshot1](images/Screenshot1.png)  "Heroku Website"
+[Screenshot1](images/screenshot1.png)  "Heroku Website"
 
-<img src="images/Screenshot1.png">
+<img src="images/screenshot1.png">
 
 <br>
 
