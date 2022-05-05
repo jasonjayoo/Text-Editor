@@ -25,12 +25,12 @@ module.exports = () => {
         swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
-        fingerprints: false,
-        inject: true,
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E',
-        description: 'Takes notes with JavaScript syntax highlighting!',
-        background_color: '#225ca3',
+        description: 'Takes notes with JS syntax',
+        background_color: '#7eb4e2',
+        fingerprints: false,
+        inject: true,
         theme_color: '#225ca3',
         start_url: '/',
         publicPath: '/',
@@ -48,7 +48,11 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
         },
         {
           test: /\.m?js$/,
