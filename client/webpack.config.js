@@ -20,6 +20,7 @@ module.exports = () => {
         template: './index.html',
         title: 'J.A.T.E'
       }),
+      new MiniCssExtractPlugin(),
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
@@ -28,10 +29,10 @@ module.exports = () => {
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E',
         description: 'Takes notes with JS syntax',
-        background_color: '#7eb4e2',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
         fingerprints: false,
         inject: true,
-        theme_color: '#225ca3',
         start_url: '/',
         publicPath: '/',
         icons: [
